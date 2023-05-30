@@ -9,6 +9,7 @@ import websockets from "./websockets/websockets.js";
 import exphbs from "express-handlebars";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+import { connectMongoDB } from "./config/configMongoDB.js";
 
 /** ★━━━━━━━━━━━★ variables ★━━━━━━━━━━━★ */
 
@@ -42,6 +43,9 @@ app.set("view engine", "handlebars");
 app.use("/", homeRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/carts", cartRoutes);
+
+/** ★━━━━━━━━━━━★ connection mongoDB ★━━━━━━━━━━━★ */
+connectMongoDB();
 
 const server = httpServer.listen(PORT, () =>
   console.log(
