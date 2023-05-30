@@ -1,5 +1,5 @@
 import MongoClass from "./MongoClass.js";
-import { cartsSchema } from "../models/cartsSchema.js";
+import { cartsSchema } from "../../models/CartsSchema.js";
 
 export class MongoDBCarts extends MongoClass {
   constructor() {
@@ -28,23 +28,21 @@ export class MongoDBCarts extends MongoClass {
     }
   }
 
-  async addProductos(carrito, productos) {
-    productos.forEach((producto) => {
-      // chequear si el producto ya esta en el carrito
-      const productoEnCarrito = carrito.productos.find(
-        (p) => p._id == producto._id
-      );
-      if (productoEnCarrito) {
-        productoEnCarrito.cantidad++;
-      } else {
-        carrito.productos.push(producto);
-      }
-    });
-    const carritoUpdated = await this.collection.findByIdAndUpdate(
-      carrito._id,
-      { productos: carrito.productos }
+  async addProductos(cart, product) {
+    // chequear si el producto ya esta en el carrito
+    const allProducts = cart.products;
+    const productExists = allProducts.find(
+      (p) => p._id._id.valueOf() == product._id.valueOf()
     );
-    return carritoUpdated;
+    if (productExists) {
+      productExists.quantity++;
+    } else {
+      cart.products.push({ _id: product._id, quantity: 1 });
+    }
+    const cartUpdated = await this.collection.findByIdAndUpdate(cart._id, {
+      products: cart.products,
+    });
+    return cartUpdated;
   }
 
   async deleteProducto(carrito, productoId) {
