@@ -1,14 +1,14 @@
 import { Router } from "express";
 const router = Router();
-import ProductManager from "../persitence/productManager.js";
+import ProductManager from "../../daos/fs/productManager.js";
 const path = "src/db/products.json";
 const myProductManager = new ProductManager(path);
-import { validateNumber } from "./../utils/helpers.js";
+import { validateNumber } from "../../utils/helpers.js";
 import {
   validateRequest,
   validateNumberParams,
   validateCodeNotRepeated,
-} from "./../middleware/validators.js";
+} from "../../middleware/validators.js";
 import multer from "multer";
 /**Multer config */
 // 'photo' es el nombre del campo en el formulario.

@@ -35,8 +35,9 @@ class MongoClass {
 
   async update(id, doc) {
     try {
-      const updatedDoc = await this.collection.findByIdAndUpdate(id, doc);
-      return updatedDoc;
+      await this.collection.findByIdAndUpdate(id, doc);
+      const docUpdated = await this.collection.findById(id);
+      return docUpdated;
     } catch (err) {
       throw new Error(err);
     }

@@ -1,28 +1,26 @@
-import MongoClass from "../../contenedores/MongoClass.js";
-import { carritosSchema } from "../../models/CarritosSchema.js";
+import MongoClass from "./MongoClass.js";
+import { cartsSchema } from "../models/cartsSchema.js";
 
-export class MongoDBCarritos extends MongoClass {
+export class MongoDBCarts extends MongoClass {
   constructor() {
-    super("carritos", carritosSchema);
+    super("carts", cartsSchema);
   }
 
   // sobreescribe el metodo getAll de la clase padre
   async getAll() {
     // traer el carrito con los productos usando populate
-    const carritos = await this.collection
-      .find({})
-      .populate({
-        path: "productos",
-        populate: { path: "_id", model: "productos" },
-      });
+    const carritos = await this.collection.find({}).populate({
+      path: "products",
+      populate: { path: "_id", model: "products" },
+    });
     return carritos;
   }
 
   async getOne(id) {
     try {
       const one = await this.collection.findById(id).populate({
-        path: "productos",
-        populate: { path: "_id", model: "productos" },
+        path: "products",
+        populate: { path: "_id", model: "products" },
       });
       return one;
     } catch (err) {

@@ -1,4 +1,4 @@
-import ProductManager from "../persitence/productManager.js";
+import ProductManager from "../daos/fs/productManager.js";
 const path = "src/db/products.json";
 const myProductManager = new ProductManager(path);
 

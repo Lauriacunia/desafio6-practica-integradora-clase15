@@ -2,9 +2,12 @@ import express from "express";
 import morgan from "morgan";
 import { Server as SocketServer } from "socket.io";
 import http from "http";
-import homeRoutes from "./routes/homeRoutes.js";
-import productRoutes from "./routes/productRoutes.js";
-import cartRoutes from "./routes/cartRoutes.js";
+import homeFsRoutes from "./routes/fs/homeFsRoutes.js";
+import productFsRoutes from "./routes/fs/productFsRoutes.js";
+import cartFsRoutes from "./routes/fs/cartFsRoutes.js";
+import homeRoutes from "./routes/mongo/homeRoutes.js";
+import productRoutes from "./routes/mongo/productRoutes.js";
+import cartRoutes from "./routes/mongo/cartRoutes.js";
 import websockets from "./websockets/websockets.js";
 import exphbs from "express-handlebars";
 import { dirname } from "path";
@@ -40,9 +43,14 @@ app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
 
 /** ★━━━━━━━━━━━★ routes ★━━━━━━━━━━━★ */
-app.use("/", homeRoutes);
-app.use("/api/products", productRoutes);
-app.use("/api/carts", cartRoutes);
+// con FileSystem
+app.use("/fs/home", homeFsRoutes);
+app.use("/fs/products", productFsRoutes);
+app.use("/fs/carts", cartFsRoutes);
+// con MongoDB
+app.use("/home", homeRoutes);
+app.use("/products", productRoutes);
+app.use("/carts", cartRoutes);
 
 /** ★━━━━━━━━━━━★ connection mongoDB ★━━━━━━━━━━━★ */
 connectMongoDB();
