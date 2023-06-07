@@ -13,7 +13,7 @@
 
 ## Documentación Postman
 
-[Ver documentación de la API](https://documenter.getpostman.com/view/13362314/UzBqnjhu)
+[Ver documentación de la API](https://documenter.getpostman.com/view/13362314/2s93sZ8Eed)
 
 ### Dependencias:
 
