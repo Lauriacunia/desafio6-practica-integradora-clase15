@@ -1,5 +1,5 @@
 import MongoClass from "./MongoClass.js";
-import { cartsSchema } from "../../models/CartsSchema.js";
+import { cartsSchema } from "./models/CartsSchema.js";
 
 export class MongoDBCarts extends MongoClass {
   constructor() {

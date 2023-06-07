@@ -8,6 +8,7 @@ import cartFsRoutes from "./routes/fs/cartFsRoutes.js";
 import homeRoutes from "./routes/mongo/homeRoutes.js";
 import productRoutes from "./routes/mongo/productRoutes.js";
 import cartRoutes from "./routes/mongo/cartRoutes.js";
+import chatRoutes from "./routes/mongo/chatRoutes.js";
 import websockets from "./websockets/websockets.js";
 import exphbs from "express-handlebars";
 import { dirname } from "path";
@@ -51,6 +52,7 @@ app.use("/fs/carts", cartFsRoutes);
 app.use("/home", homeRoutes);
 app.use("/products", productRoutes);
 app.use("/carts", cartRoutes);
+app.use("/chat", chatRoutes);
 
 /** ★━━━━━━━━━━━★ connection mongoDB ★━━━━━━━━━━━★ */
 connectMongoDB();
